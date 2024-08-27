@@ -1,0 +1,26 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"traefik.containo.us/v1alpha1","kind":"IngressRoute","metadata":{"annotations":{},"name":"open-webui-ollama","namespace":"open-webui"},"spec":{"entryPoints":["websecure"],"routes":[{"kind":"Rule","match":"Host(`open-webui-ollama.83-206-89-105.nip.io`)","middlewares":[{"name":"security"},{"name":"ratelimit"}],"services":[{"name":"open-webui-ollama","port":11434}]}],"tls":{"certResolver":"letsencrypt"}}}
+  creationTimestamp: "2024-07-10T14:36:58Z"
+  generation: 1
+  name: open-webui-ollama
+  namespace: open-webui
+  resourceVersion: "250864045"
+  uid: b50d1cce-0c06-45bd-811a-f4a2e32f4b02
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`open-webui-ollama.83-206-89-105.nip.io`)
+    middlewares:
+    - name: security
+    - name: ratelimit
+    services:
+    - name: open-webui-ollama
+      port: 11434
+  tls:
+    certResolver: letsencrypt

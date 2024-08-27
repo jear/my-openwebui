@@ -1,0 +1,26 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"traefik.containo.us/v1alpha1","kind":"IngressRoute","metadata":{"annotations":{},"name":"open-webui","namespace":"open-webui"},"spec":{"entryPoints":["websecure"],"routes":[{"kind":"Rule","match":"Host(`open-webui.83-206-89-106.nip.io`)","middlewares":[{"name":"security"},{"name":"ratelimit"}],"services":[{"name":"open-webui","port":80}]}],"tls":{"certResolver":"letsencrypt"}}}
+  creationTimestamp: "2024-07-12T09:22:47Z"
+  generation: 1
+  name: open-webui
+  namespace: open-webui
+  resourceVersion: "409151019"
+  uid: f9d2f6cc-9de7-46d9-8ab3-e2a1b79cf438
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`open-webui.83-206-89-106.nip.io`)
+    middlewares:
+    - name: security
+    - name: ratelimit
+    services:
+    - name: open-webui
+      port: 80
+  tls:
+    certResolver: letsencrypt

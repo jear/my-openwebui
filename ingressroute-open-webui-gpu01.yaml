@@ -1,0 +1,19 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: open-webui
+  namespace: open-webui
+spec:
+  entryPoints:
+  - websecure
+  routes:
+  - kind: Rule
+    match: Host(`open-webui.83-206-89-104.nip.io`)
+    middlewares:
+    - name: security
+    - name: ratelimit
+    services:
+    - name: open-webui
+      port: 80
+  tls:
+    certResolver: letsencrypt
