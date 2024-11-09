@@ -10,11 +10,11 @@ ollama:
     gpu:
       enabled: true
       type: 'nvidia'
-      number: 2
+#      number: 3
     models:
       - llama3.1:8b
   # runtimeClassName: nvidia
   persistentVolume:
     enabled: true
   #   volumeName: "example-pre-existing-pv-created-by-smb-csi"
-    size: 20Gi
+    size: 200Gi
