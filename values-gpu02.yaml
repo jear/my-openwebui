@@ -1,5 +1,5 @@
 nameOverride: ""
-
+namespaceOverride: ""
 ollama:
   # -- Automatically install Ollama Helm chart from https://otwld.github.io/ollama-helm/. Use [Helm Values](https://github.com/otwld/ollama-helm/#helm-values) to configure
   enabled: true
@@ -10,11 +10,25 @@ ollama:
     gpu:
       enabled: true
       type: 'nvidia'
-      number: 1
+      number: 4
     models:
-      - llama3.1:8b
-  # runtimeClassName: nvidia
+      pull:
+        - llama3
+      run:
+        - llama3
+  runtimeClassName: nvidia
   persistentVolume:
     enabled: true
   #   volumeName: "example-pre-existing-pv-created-by-smb-csi"
-    size: 200Gi
+    size: 400Gi
+
+pipelines:
+  # -- Automatically install Pipelines chart to extend Open WebUI functionality using Pipelines: https://github.com/open-webui/pipelines
+  enabled: true
+  # -- This section can be used to pass required environment variables to your pipelines (e.g. Langfuse hostname)
+  extraEnvVars: []
+
+tika:
+  # -- Automatically install Apache Tika to extend Open WebUI
+  enabled: true
+
